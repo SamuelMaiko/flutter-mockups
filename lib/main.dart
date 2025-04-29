@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
         preferredSize: Size.fromHeight(80.0),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 18),
-          color: Colors.white,
+          color: Color(0xFFf5f5f5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -98,7 +99,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: Colors.white,
+        color: Color(0xFFf5f5f5),
         child: Column(
           children: [
             // first child
@@ -149,7 +150,7 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: DefaultTextStyle(
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Color(0xFFf5f5f5)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -202,9 +203,141 @@ class HomePage extends StatelessWidget {
               ),
             ),
             // second child
-            Container(child: Row(children: [
-
-              ],)),
+            Center(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1877F2),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    height: 200,
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    // width: ,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        PaymentOption(
+                          imagePath: "assets/mtn.png",
+                          name: "Mtn Money",
+                        ),
+                        PaymentOption(
+                          imagePath: "assets/airtel.png",
+                          name: "Airtel Money",
+                        ),
+                        PaymentOption(
+                          imagePath: "assets/wallet.png",
+                          name: "Other centenary account",
+                        ),
+                        PaymentOption(
+                          imagePath: "assets/other_bank.png",
+                          name: "Other Bank Transfer",
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -MediaQuery.of(context).size.height * 0.66,
+                    left: (MediaQuery.of(context).size.width - 400) / 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        padding: EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        width: 355,
+                        height: 600,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                QuickLink(
+                                  name: "Send Money",
+                                  svgPath:
+                                      "assets/svg/money-send-svgrepo-com.svg",
+                                ),
+                                QuickLink(
+                                  name: "CenterMobile Loans",
+                                  svgPath:
+                                      "assets/svg/bank-card-2-svgrepo-com.svg",
+                                ),
+                                QuickLink(
+                                  name: "Bill Payments",
+                                  svgPath: "assets/svg/receipt-svgrepo-com.svg",
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 28),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                QuickLink(
+                                  name: "Airtime and Data Bundles",
+                                  svgPath: "assets/svg/customer-support.svg",
+                                ),
+                                QuickLink(
+                                  name: "School fees",
+                                  svgPath: "assets/svg/settings.svg",
+                                ),
+                                QuickLink(
+                                  name: "Agent Withdrawal",
+                                  svgPath: "assets/svg/security.svg",
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 28),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                QuickLink(
+                                  name: "Cente Xpress",
+                                  svgPath: "assets/svg/notifications.svg",
+                                ),
+                                QuickLink(
+                                  name: "Payments and Collections",
+                                  svgPath: "assets/svg/question.svg",
+                                ),
+                                QuickLink(
+                                  name: "Card Services",
+                                  svgPath: "assets/svg/info-circle.svg",
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 25),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                QuickLink(
+                                  name: "My Transactions",
+                                  svgPath: "assets/svg/user-profile-circle.svg",
+                                ),
+                                QuickLink(
+                                  name: "Requests",
+                                  svgPath: "assets/svg/history.svg",
+                                ),
+                                QuickLink(
+                                  name: "Account Settings",
+                                  svgPath: "assets/svg/account-settings.svg",
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -220,7 +353,59 @@ class PaymentOption extends StatelessWidget {
   const PaymentOption({required this.name, required this.imagePath});
 
   @override
-  Widget build (BuildContext context){
-    return Container(child: Text("I'm a component"));
+  Widget build(BuildContext context) {
+    return Container(
+      width: 101,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 24, // size of the circle
+            backgroundImage: AssetImage(imagePath),
+            backgroundColor: Colors.transparent,
+          ),
+          Text(
+            name,
+            style: TextStyle(color: Colors.white, fontSize: 12),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class QuickLink extends StatelessWidget {
+  final String svgPath;
+  final String name;
+
+  const QuickLink({required this.name, required this.svgPath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 101,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            svgPath,
+            width: 40,
+            height: 40,
+            color: Color(0xFF1877F2),
+          ),
+          SizedBox(height: 8),
+          Text(
+            name,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
   }
 }
