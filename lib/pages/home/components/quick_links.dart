@@ -6,9 +6,9 @@ class QuickLinks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Wrap(
+          runSpacing: 22,
+          spacing: 13,
           children: [
             QuickLinkCard(
               name: "Send Money",
@@ -22,13 +22,6 @@ class QuickLinks extends StatelessWidget {
               name: "Bill Payments",
               svgPath: "assets/svg/receipt-svgrepo-com.svg",
             ),
-          ],
-        ),
-        SizedBox(height: 28),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
             QuickLinkCard(
               name: "Airtime and Data Bundles",
               svgPath: "assets/svg/customer-support.svg",
@@ -41,13 +34,6 @@ class QuickLinks extends StatelessWidget {
               name: "Agent Withdrawal",
               svgPath: "assets/svg/security.svg",
             ),
-          ],
-        ),
-        SizedBox(height: 28),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
             QuickLinkCard(
               name: "Cente Xpress",
               svgPath: "assets/svg/notifications.svg",
@@ -60,13 +46,6 @@ class QuickLinks extends StatelessWidget {
               name: "Card Services",
               svgPath: "assets/svg/info-circle.svg",
             ),
-          ],
-        ),
-        SizedBox(height: 25),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
             QuickLinkCard(
               name: "My Transactions",
               svgPath: "assets/svg/user-profile-circle.svg",

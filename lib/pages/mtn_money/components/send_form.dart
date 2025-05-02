@@ -14,25 +14,6 @@ class _SendFormState extends State<SendForm> {
   TextEditingController _amount_controller = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _amount_controller = TextEditingController(text: "1000");
-  }
-
-  @override
-  void dispose() {
-    _amount_controller.dispose();
-    super.dispose();
-  }
-
-  void _submit() {
-    final amount = _amount_controller.text;
-    print("Amount is: $amount");
-    // context.read<FormBloc>().add(AmountTextChanged(value));
-    _amount_controller.text = "";
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
@@ -146,12 +127,6 @@ class _SendFormState extends State<SendForm> {
                 Expanded(
                   child: TextField(
                     controller: _amount_controller,
-                    // onChanged:
-                    //     (value) => {
-                    //       context.read<FormBloc>().add(
-                    //         AmountTextChanged(value),
-                    //       ),
-                    //     },
                     decoration: InputDecoration(
                       hintText: "Amount",
                       hintStyle: TextStyle(color: Colors.grey.shade500),

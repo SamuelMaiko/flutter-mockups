@@ -6,8 +6,6 @@ class PaymentOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 2,
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         PaymentOptionCard(
           imagePath: "assets/mtn.png",

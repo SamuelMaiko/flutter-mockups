@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app_flutter2/bloc/login_bloc.dart';
 import 'package:test_app_flutter2/pages/home/home_page.dart';
 import 'package:test_app_flutter2/pages/login/login.dart';
-import 'package:test_app_flutter2/pages/mtn_money/mtn_money.dart';
+import 'package:test_app_flutter2/pages/mtn_money/mtn_money_page.dart';
 
 void main() {
   runApp(const MyApp());

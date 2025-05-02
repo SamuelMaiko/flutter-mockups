@@ -10,14 +10,6 @@ class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // void _handleLogin() {
-  //   String email = emailController.text;
-  //   String password = passwordController.text;
-
-  //   bloc.
-
-  // }
-
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<LoginBloc>(context);
@@ -34,7 +26,7 @@ class LoginPage extends StatelessWidget {
             ),
           );
         } else if (state is LoginFailed) {
-          Navigator.pushNamed(context, "/home");
+          // Navigator.pushNamed(context, "/home");
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               backgroundColor: Colors.red,
@@ -118,9 +110,6 @@ class LoginPage extends StatelessWidget {
                             FormSubmitted(email: email, password: password),
                           );
                         },
-                        // onPressed: () {
-                        //   context.read<FormBloc>().add(FormSubmitted());
-                        // },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.symmetric(vertical: 13),
                           backgroundColor: Color(0xFF1877F2),

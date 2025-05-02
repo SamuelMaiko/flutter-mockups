@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app_flutter2/pages/mtn_money/components/beneficiary_other_no.dart';
 import 'package:test_app_flutter2/pages/mtn_money/components/send_form.dart';
 
 class MtnMoneyPage extends StatelessWidget {
@@ -48,43 +49,7 @@ class MtnMoneyPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               // Selecting beneficiary or other number
-              Container(
-                padding: EdgeInsets.all(3),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 13),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF1877F2),
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        child: Text(
-                          "Select Beneficiary",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: Text(
-                          "Other Number",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              BeneficiaryOtherNumber(),
               SendForm(),
             ],
           ),
