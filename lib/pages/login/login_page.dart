@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app_flutter2/bloc/login_bloc.dart';
-import 'package:test_app_flutter2/bloc/login_event.dart';
-import 'package:test_app_flutter2/bloc/login_state.dart';
+import 'package:test_app_flutter2/bloc/login/login_bloc.dart';
+import 'package:test_app_flutter2/bloc/login/login_event.dart';
+import 'package:test_app_flutter2/bloc/login/login_state.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -34,12 +34,25 @@ class LoginPage extends StatelessWidget {
               duration: Duration(seconds: 3),
             ),
           );
+        } else if (state is unFilledDetails) {
+          // Navigator.pushNamed(context, "/home");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.amber,
+              content: Text(
+                "Fill all details",
+                style: TextStyle(color: Colors.black),
+              ),
+              duration: Duration(seconds: 3),
+            ),
+          );
         }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             title: Text("Login", style: TextStyle(fontWeight: FontWeight.w600)),
+            automaticallyImplyLeading: false,
           ),
           body: Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -97,39 +110,65 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                state is Loading
-                    ? CircularProgressIndicator()
-                    : Container(
-                      width: double.infinity,
-                      child: TextButton(
-                        onPressed: () {
-                          String email = emailController.text;
-                          String password = passwordController.text;
+                Container(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      String email = emailController.text;
+                      String password = passwordController.text;
 
-                          bloc.add(
-                            FormSubmitted(email: email, password: password),
-                          );
-                        },
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 13),
-                          backgroundColor: Color(0xFF1877F2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              10,
-                            ), // Border radius here
-                          ),
-                        ),
-                        child: Text(
-                          "LOGIN".toUpperCase(),
-
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                      bloc.add(FormSubmitted(email: email, password: password));
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 13),
+                      backgroundColor: Color(0xFF1877F2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ), // Border radius here
                       ),
                     ),
+                    child:
+                        state is Loading
+                            ? SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 3,
+                                color: Colors.white,
+                              ),
+                            )
+                            : Text(
+                              "LOGIN".toUpperCase(),
+
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                  ),
+                ),
+
+                SizedBox(height: 20),
+                Text(
+                  "Don't have an account?",
+                  style: TextStyle(color: Colors.grey.shade500, fontSize: 14),
+                ),
+                SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      color: Color(0xFF1877F2),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

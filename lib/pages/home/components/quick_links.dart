@@ -7,7 +7,7 @@ class QuickLinks extends StatelessWidget {
     return Column(
       children: [
         Wrap(
-          runSpacing: 22,
+          runSpacing: 27,
           spacing: 13,
           children: [
             QuickLinkCard(

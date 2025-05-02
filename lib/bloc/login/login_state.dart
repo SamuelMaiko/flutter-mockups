@@ -7,3 +7,5 @@ class InitialLogin extends LoginState {}
 class LoginSuccess extends LoginState {}
 
 class LoginFailed extends LoginState {}
+
+class unFilledDetails extends LoginState {}
